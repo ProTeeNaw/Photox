@@ -117,51 +117,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\assets\css\fontawesome-all.min.css" />
-    <Content Include="app\assets\css\images\arrow-small.svg" />
-    <Content Include="app\assets\css\images\arrow.svg" />
-    <Content Include="app\assets\css\images\close-small-alt.svg" />
-    <Content Include="app\assets\css\images\close-small.svg" />
-    <Content Include="app\assets\css\images\close.svg" />
-    <Content Include="app\assets\css\images\open-small.svg" />
-    <Content Include="app\assets\css\images\open.svg" />
-    <Content Include="app\assets\css\images\spinner.svg" />
-    <Content Include="app\assets\css\main.css" />
-    <Content Include="app\assets\css\noscript.css" />
     <Content Include="app\assets\css\style.css" />
-    <Content Include="app\assets\js\breakpoints.min.js" />
-    <Content Include="app\assets\js\browser.min.js" />
-    <Content Include="app\assets\js\jquery.min.js" />
-    <Content Include="app\assets\js\main.js" />
     <Content Include="app\assets\js\script.js" />
-    <Content Include="app\assets\webfonts\fa-brands-400.svg" />
-    <Content Include="app\assets\webfonts\fa-regular-400.svg" />
-    <Content Include="app\assets\webfonts\fa-solid-900.svg" />
     <Content Include="app\dashboard.aspx" />
-    <Content Include="app\imagess\fulls\01.jpg" />
-    <Content Include="app\imagess\fulls\02.jpg" />
-    <Content Include="app\imagess\fulls\03.jpg" />
-    <Content Include="app\imagess\fulls\04.jpg" />
-    <Content Include="app\imagess\fulls\05.jpg" />
-    <Content Include="app\imagess\fulls\06.jpg" />
-    <Content Include="app\imagess\fulls\07.jpg" />
-    <Content Include="app\imagess\fulls\08.jpg" />
-    <Content Include="app\imagess\fulls\09.jpg" />
-    <Content Include="app\imagess\fulls\10.jpg" />
-    <Content Include="app\imagess\fulls\11.jpg" />
-    <Content Include="app\imagess\fulls\12.jpg" />
-    <Content Include="app\imagess\thumbs\01.jpg" />
-    <Content Include="app\imagess\thumbs\02.jpg" />
-    <Content Include="app\imagess\thumbs\03.jpg" />
-    <Content Include="app\imagess\thumbs\04.jpg" />
-    <Content Include="app\imagess\thumbs\05.jpg" />
-    <Content Include="app\imagess\thumbs\06.jpg" />
-    <Content Include="app\imagess\thumbs\07.jpg" />
-    <Content Include="app\imagess\thumbs\08.jpg" />
-    <Content Include="app\imagess\thumbs\09.jpg" />
-    <Content Include="app\imagess\thumbs\10.jpg" />
-    <Content Include="app\imagess\thumbs\11.jpg" />
-    <Content Include="app\imagess\thumbs\12.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -175,39 +133,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\assets\sass\base\_page.scss" />
-    <Content Include="app\assets\sass\base\_reset.scss" />
-    <Content Include="app\assets\sass\base\_typography.scss" />
-    <Content Include="app\assets\sass\components\_actions.scss" />
-    <Content Include="app\assets\sass\components\_button.scss" />
-    <Content Include="app\assets\sass\components\_form.scss" />
-    <Content Include="app\assets\sass\components\_icon.scss" />
-    <Content Include="app\assets\sass\components\_icons.scss" />
-    <Content Include="app\assets\sass\components\_list.scss" />
-    <Content Include="app\assets\sass\layout\_footer.scss" />
-    <Content Include="app\assets\sass\layout\_header.scss" />
-    <Content Include="app\assets\sass\layout\_main.scss" />
-    <Content Include="app\assets\sass\layout\_thumbnails.scss" />
-    <Content Include="app\assets\sass\layout\_viewer.scss" />
-    <Content Include="app\assets\sass\libs\_breakpoints.scss" />
-    <Content Include="app\assets\sass\libs\_functions.scss" />
-    <Content Include="app\assets\sass\libs\_mixins.scss" />
-    <Content Include="app\assets\sass\libs\_vars.scss" />
-    <Content Include="app\assets\sass\libs\_vendor.scss" />
-    <Content Include="app\assets\sass\main.scss" />
-    <Content Include="app\assets\sass\noscript.scss" />
-    <Content Include="app\assets\webfonts\fa-brands-400.eot" />
-    <Content Include="app\assets\webfonts\fa-brands-400.ttf" />
-    <Content Include="app\assets\webfonts\fa-brands-400.woff" />
-    <Content Include="app\assets\webfonts\fa-brands-400.woff2" />
-    <Content Include="app\assets\webfonts\fa-regular-400.eot" />
-    <Content Include="app\assets\webfonts\fa-regular-400.ttf" />
-    <Content Include="app\assets\webfonts\fa-regular-400.woff" />
-    <Content Include="app\assets\webfonts\fa-regular-400.woff2" />
-    <Content Include="app\assets\webfonts\fa-solid-900.eot" />
-    <Content Include="app\assets\webfonts\fa-solid-900.ttf" />
-    <Content Include="app\assets\webfonts\fa-solid-900.woff" />
-    <Content Include="app\assets\webfonts\fa-solid-900.woff2" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
