@@ -121,8 +121,6 @@
     <Content Include="app\assets\js\script.js" />
     <Content Include="app\dashboard.aspx" />
     <Content Include="auth\access.html" />
-    <Content Include="auth\index.html" />
-    <Content Include="auth\invalid.html" />
     <Content Include="auth\login.html" />
     <Content Include="auth\signup.html" />
     <Content Include="auth\signup_assets\assets\bootstrap\css\bootstrap-grid.min.css" />
@@ -177,7 +175,6 @@
     <Content Include="auth\signup_assets\js\jquery-1.12.4.js" />
     <Content Include="auth\signup_assets\js\jquery-ui.js" />
     <Content Include="auth\signup_assets\js\main.js" />
-    <Content Include="auth\signup_assets\Synblend.Accounts.SignUp.njsproj.user" />
     <Content Include="auth\signup_assets\vendor\animate\animate.css" />
     <Content Include="auth\signup_assets\vendor\animsition\css\animsition.css" />
     <Content Include="auth\signup_assets\vendor\animsition\css\animsition.min.css" />
@@ -251,7 +248,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="auth\serviceaccount.json" />
     <Content Include="auth\signup_assets\assets\images\hashes.json" />
     <Content Include="auth\signup_assets\assets\socicon\fonts\socicon.eot" />
     <Content Include="auth\signup_assets\assets\socicon\fonts\socicon.ttf" />
@@ -318,10 +314,7 @@
     <Content Include="auth\signup_assets\fonts\poppins\Poppins-SemiBoldItalic.ttf" />
     <Content Include="auth\signup_assets\fonts\poppins\Poppins-Thin.ttf" />
     <Content Include="auth\signup_assets\fonts\poppins\Poppins-ThinItalic.ttf" />
-    <Content Include="auth\signup_assets\obj\Debug\Synblend.Accounts.SignUp.njsprojAssemblyReference.cache" />
-    <Content Include="auth\signup_assets\obj\Release\Synblend.Accounts.SignUp.njsprojAssemblyReference.cache" />
     <Content Include="auth\signup_assets\package.json" />
-    <Content Include="auth\signup_assets\Synblend.Accounts.SignUp.njsproj" />
     <Content Include="auth\signup_assets\vendor\bootstrap\css\bootstrap-grid.css.map" />
     <Content Include="auth\signup_assets\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
     <Content Include="auth\signup_assets\vendor\bootstrap\css\bootstrap-reboot.css.map" />
@@ -334,6 +327,7 @@
     <Content Include="auth\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="auth\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="auth\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="config\serviceaccount.json" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
