@@ -90,7 +90,8 @@ function login() {
             ic.classList.add("fa-spin");
 
             firebase.auth().signInWithEmailAndPassword(userEmail, userPass).then(({ user }) => {
-                    return user.getIdToken().then((idToken) => {
+                return user.getIdToken().then((idToken) => {
+                    document.cookie = "_snbslg=" + idToken;
                         return fetch("/loginsession", {
                             method: "POST",
                             headers: {
@@ -317,7 +318,7 @@ function gs() {
     })
         .then(() => {
             //Redirect user to requested location
-            window.location = "http://localhost:8080";
+            window.location = "../app/dashboard.aspx";
         })
         .catch((error) => {
             mess.textContent = error;
@@ -360,10 +361,10 @@ function checkAuth() {
             
             if (user.displayName.indexOf(' ') >= 0) {
                 var name = user.displayName.substring(0, user.displayName.indexOf(' '));
-                document.getElementById('wel').textContent = "Welcome, " + name;
+                //document.getElementById('wel').textContent = "Welcome, " + name;
             }
             else {
-                document.getElementById('wel').textContent = "Welcome, " + user.displayName;
+                //document.getElementById('wel').textContent = "Welcome, " + user.displayName;
             }
         } else {
             alert('Out');

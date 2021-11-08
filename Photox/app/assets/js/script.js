@@ -71,3 +71,27 @@ const toggleButton = document.querySelector('.dark-light');
 toggleButton.addEventListener('click', () => {
   document.body.classList.toggle('light-mode');
 });
+
+//Account Action BEGIN --When user clicks their profile photo
+$(document).click(function (e) {
+    var container = $(".profile-img");
+    var dd = $(".dropdown");
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        dd.removeClass("is-active");
+    }
+});
+
+$(function () {
+    $(".profile-img:not(.open)").on("click", function (e) {
+        $(".overlay-app").addClass("is-active");
+    });
+    $(".pop-up .close").click(function () {
+        $(".overlay-app").removeClass("is-active");
+    });
+});
+
+$(".profile-img:not(.open)").click(function () {
+    $(".pop-up").addClass("visible");
+});
+
+//Account Action END
