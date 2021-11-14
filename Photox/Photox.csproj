@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Firebase.Storage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FirebaseStorage.net.1.0.3\lib\netstandard1.1\Firebase.Storage.dll</HintPath>
+    </Reference>
     <Reference Include="FirebaseAdmin, Version=2.2.0.0, Culture=neutral, PublicKeyToken=97c8d00c348326ed, processorArchitecture=MSIL">
       <HintPath>..\packages\FirebaseAdmin.2.2.0\lib\net461\FirebaseAdmin.dll</HintPath>
     </Reference>
@@ -71,8 +74,18 @@
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.AppContext.4.3.0\lib\net463\System.AppContext.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -80,16 +93,130 @@
     <Reference Include="System.Collections.Immutable, Version=1.2.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.1.7.1\lib\net461\System.Collections.Immutable.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Tracing, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Linq, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.4.3.0\lib\net463\System.Linq.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Expressions.4.3.0\lib\net463\System.Linq.Expressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.0\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
+    <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Extensions.4.3.0\lib\net462\System.Runtime.Extensions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.4.3.0\lib\net463\System.Runtime.InteropServices.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.RegularExpressions.4.3.0\lib\net463\System.Text.RegularExpressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
@@ -110,6 +237,11 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -118,6 +250,93 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\assets\css\style.css" />
+    <Content Include="app\assets\front-dashboard\assets\css\theme.min.css" />
+    <Content Include="app\assets\front-dashboard\assets\css\vendor.min.css" />
+    <Content Include="app\assets\front-dashboard\assets\img\160x160\img10.jpg" />
+    <Content Include="app\assets\front-dashboard\assets\img\160x160\img3.jpg" />
+    <Content Include="app\assets\front-dashboard\assets\img\160x160\img4.jpg" />
+    <Content Include="app\assets\front-dashboard\assets\img\160x160\img5.jpg" />
+    <Content Include="app\assets\front-dashboard\assets\img\160x160\img6.jpg" />
+    <Content Include="app\assets\front-dashboard\assets\img\160x160\img7.jpg" />
+    <Content Include="app\assets\front-dashboard\assets\img\160x160\img8.jpg" />
+    <Content Include="app\assets\front-dashboard\assets\img\160x160\img9.jpg" />
+    <Content Include="app\assets\front-dashboard\assets\img\1920x400\img1.jpg" />
+    <Content Include="app\assets\front-dashboard\assets\js\demo.js" />
+    <Content Include="app\assets\front-dashboard\assets\js\theme.min.js" />
+    <Content Include="app\assets\front-dashboard\assets\js\vendor.min.js" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\atlassian.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\bank-of-america.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\capsule.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\excel.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\fitbit-gray.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\flow-xo-gray.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\frontapp.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\gitlab-gray.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\gmail.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\google-webdev.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\google.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\htmlstream.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\layar-gray.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\mailchimp.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\pdf.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\slack.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\spec.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\spotify.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\brands\word.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\components\placeholder-csv-format.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\components\star.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\at-line.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\book.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\browse.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\card-1.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\card-2.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\card-3.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\choice.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\copy.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\graphs.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\phone-line.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\presenting.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\print.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\review-5-star.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\review-rating-shield.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\sorry.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\illustrations\world-line.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\layouts\header-default-container.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\layouts\header-default-fluid.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\layouts\header-double-line-container.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\layouts\header-double-line-fluid.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\layouts\layouts-sidebar-dark.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\layouts\layouts-sidebar-default.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\layouts\layouts-sidebar-light.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\layouts\sidebar-compact.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\layouts\sidebar-default-classic.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\layouts\sidebar-mini.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\logos\logo-short.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\logos\logo-white.svg" />
+    <Content Include="app\assets\front-dashboard\assets\svg\logos\logo.svg" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\babel-polyfill\polyfill.min.js" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\chart-js-extensions\chartjs-extensions.js" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\chart-js\dist\chart.min.js" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\chartjs-plugin-datalabels\dist\chartjs-plugin-datalabels.min.js" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\flag-icon-css\flags\1x1\br.svg" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\flag-icon-css\flags\1x1\ca.svg" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\flag-icon-css\flags\1x1\cn.svg" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\flag-icon-css\flags\1x1\de.svg" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\flag-icon-css\flags\1x1\dk.svg" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\flag-icon-css\flags\1x1\gb.svg" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\flag-icon-css\flags\1x1\in.svg" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\flag-icon-css\flags\1x1\it.svg" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\flag-icon-css\flags\1x1\ng.svg" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\flag-icon-css\flags\1x1\ru.svg" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\flag-icon-css\flags\1x1\sg.svg" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\flag-icon-css\flags\1x1\us.svg" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\hs-navbar-vertical-aside\hs-navbar-vertical-aside-mini-cache.js" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\icon-set\fonts\the-icon-of.svg" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\icon-set\style.css" />
+    <Content Include="app\assets\front-dashboard\dashboard-alternative.html" />
+    <Content Include="app\assets\front-dashboard\favicon.ico" />
+    <Content Include="app\assets\front-dashboard\index.html" />
+    <Content Include="app\assets\front-dashboard\users.html" />
     <Content Include="app\assets\js\script.js" />
     <Content Include="app\dashboard.aspx" />
     <Content Include="auth\access.html" />
@@ -329,6 +548,9 @@
     <Content Include="auth\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="auth\vendor\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="config\serviceaccount.json" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\icon-set\fonts\the-icon-of.eot" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\icon-set\fonts\the-icon-of.ttf" />
+    <Content Include="app\assets\front-dashboard\assets\vendor\icon-set\fonts\the-icon-of.woff" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

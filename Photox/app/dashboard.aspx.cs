@@ -1,11 +1,11 @@
-﻿using FirebaseAdmin.Auth;
+﻿using Firebase.Storage;
+using FirebaseAdmin.Auth;
 using Photox.auth.FirebaseAuth;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Threading.Tasks;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 namespace Photox.app
 {
@@ -20,13 +20,10 @@ namespace Photox.app
             CheckAuth();
         }
 
-        /// <summary>
-        /// Check if user is logged in and get user related data.
-        /// </summary>
         private async void CheckAuth()
         {
-            var qq = await FirebaseAuth.DefaultInstance.VerifySessionCookieAsync(Request.Cookies["_snbslg"].Value, true);
-            Console.WriteLine(qq);
+            //var qq = await FirebaseAuth.DefaultInstance.VerifySessionCookieAsync(Request.Cookies["_snbslg"].Value, true);
+            //Console.WriteLine(qq);
             if (Request.Cookies["_snbslg"] != null)
             {
                 try
@@ -34,6 +31,33 @@ namespace Photox.app
                     var decodedToken = await FirebaseAuth.DefaultInstance.VerifySessionCookieAsync(Request.Cookies["_snbslg"].Value, true);
 
                     UserRecord userRecord = await FirebaseAuth.DefaultInstance.GetUserAsync(decodedToken.Uid);
+
+                    //Create Session Cookie
+                    // Set session expiration to 5 days.
+                    var options = new SessionCookieOptions()
+                    {
+                        ExpiresIn = TimeSpan.FromDays(5),
+                    };
+
+                    try
+                    {
+                        var sessionCookie = await FirebaseAuth.DefaultInstance.CreateSessionCookieAsync(Request.Cookies["_snbslg"].Value, options);
+
+                        HttpCookie strname = new HttpCookie("session")
+                        {
+                            Value = sessionCookie,
+                            Expires = DateTime.Now.AddDays(10),
+                            Secure = true
+                        };
+
+                        Response.Cookies.Add(strname);
+                        Response.Write($"<script>alert('Added + {strname}')</script>");
+                    }
+                    catch (FirebaseAuthException ex)
+                    {
+                        Response.Write($"<script>alert('{ex.Message}')</script>");
+                    }
+
 
                     if (userRecord.DisplayName != null)
                     {
@@ -71,6 +95,63 @@ namespace Photox.app
             {
                 Response.Redirect("../auth/access.html", false);
             }
+        }
+
+        protected async void UploadFile(object sender, EventArgs e)
+        {
+            if (Request.Cookies["_snbslg"] != null)
+            {
+                if (Request.Cookies["file_path"] != null)
+                {
+                    try
+                    {
+                        var decodedToken = await FirebaseAuth.DefaultInstance.VerifySessionCookieAsync(Request.Cookies["session"].Value, true);
+
+                        // Get any Stream - it can be FileStream, MemoryStream or any other type of Stream
+                        var stream = File.Open(Request.Cookies["file_path"].Value, FileMode.Open);
+
+                        //authentication
+                        // Constructr FirebaseStorage, path to where you want to upload the file and Put it there
+                        var task = new FirebaseStorage(
+                            "photox-4e1e1.appspot.com",
+
+                             new FirebaseStorageOptions
+                             {
+                             //AuthTokenAsyncFactory = () => Task.FromResult(Request.Cookies["session"].Value),
+                             ThrowOnCancel = true,
+                             })
+
+                            .Child("data")
+                            .PutAsync(stream);
+
+                        // Track progress of the upload
+                        //task.Progress.ProgressChanged += (s, e) => Console.WriteLine($"Progress: {e.Percentage} %");
+
+                        // await the task to wait until upload completes and get the download url
+                        var downloadUrl = await task;
+                        Console.WriteLine(downloadUrl);
+                    }
+                    catch (FirebaseAuthException ex)
+                    {
+                        Response.Write($"<script>alert('{ex.Message}')</script>");
+                    }
+                }
+                else
+                {
+
+                }
+
+            }
+            else
+            {
+                Response.Redirect("../auth/access.html", false);
+            }
+
+        }
+
+        private async void SessionCookie()
+        {
+
         }
     }
 }

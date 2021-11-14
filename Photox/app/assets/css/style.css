@@ -306,13 +306,7 @@ body.light-mode .video-bg:before {
      object-fit: cover;
   border: 2px solid var(--theme-color);
   margin-left: 22px;
-  cursor: crosshair;
-}d
-dapper {
-  diisplay: flex;
-  flex-grow: 1;
-  overflow: hidde
-: hidde
+}
 
 .wide .header-menu,
 .wide .header-profile {

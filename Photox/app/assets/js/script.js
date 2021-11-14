@@ -95,3 +95,13 @@ $(".profile-img:not(.open)").click(function () {
 });
 
 //Account Action END
+
+//Get path for upload
+
+function getPath() {
+    var inputName = document.getElementById('fileupload');
+    var imgPath;
+
+    imgPath = inputName.value;
+    alert(imgPath);
+}

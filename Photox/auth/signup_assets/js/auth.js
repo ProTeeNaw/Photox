@@ -91,7 +91,9 @@ function login() {
 
             firebase.auth().signInWithEmailAndPassword(userEmail, userPass).then(({ user }) => {
                 return user.getIdToken().then((idToken) => {
-                    document.cookie = "_snbslg=" + idToken;
+                    var now = new Date();
+                    now.setTime(now.getTime() + 1 * 3600 * 1000);
+                    document.cookie = "_snbslg=" + idToken + 'expires=' + now.toUTCString()+'; path =/';
                         return fetch("/loginsession", {
                             method: "POST",
                             headers: {
@@ -300,6 +302,9 @@ function gs() {
         var user = firebase.auth().currentUser;
         //var name, email, photoUrl, uid, emailVerified;
         return user.getIdToken().then((idToken) => {
+            var now = new Date();
+            now.setTime(now.getTime() + 1 * 3600 * 1000);
+            document.cookie = "_snbslg=" + idToken + 'expires=' + now.toUTCString() + '; path =/';
             return fetch("/loginsession", {
                 method: "POST",
                 headers: {
@@ -370,12 +375,4 @@ function checkAuth() {
             alert('Out');
         }
     })
-}
-
-function createRedURL() {
-    sessionStorage.setItem("redirect", document.URL);
-}
-
-function getRedURL() {
-    return sessionStorage.getItem("redirect");
 }

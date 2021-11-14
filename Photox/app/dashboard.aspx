@@ -1,4 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Async="true" Inherits="Photox.app.dashboard"%>
+﻿
+   
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Async="true" Inherits="Photox.app.dashboard"%>
 
 <!DOCTYPE html>
 
@@ -9,13 +11,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="generator" content=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
+
+    <%-- FRONT-DASH CSS INJECTION --%>
+
+    <link rel="stylesheet" href="assets/front-dashboard/assets/css/vendor.min.css"/>
+    <link rel="stylesheet" href="assets/front-dashboard/assets/vendor/icon-set/style.css"/>
+    <link rel="stylesheet" href="assets/front-dashboard/assets/css/theme.min.css"/>
+
+    <%-- FRONT-DASH CSS INJECTION END --%>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"/>
     <link rel="stylesheet" href="assets/css/style.css"/>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="video-bg">
- <video width="320" height="240" autoplay loop muted>
+ <video width="320" height="240" autoplay="autoplay" loop="loop" muted="muted">
   <source src="https://assets.codepen.io/3364143/7btrrd.mp4" type="video/mp4"/>
 Your browser does not support the video tag.
 </video>
@@ -29,7 +40,7 @@ Your browser does not support the video tag.
   <div class="menu-circle"></div>
   <div class="header-menu">
    <a class="menu-link is-active" href="#">Albums</a>
-   <a class="menu-link notify" href="#">Uploads</a>
+   <a class="menu-link notify" href="#" id="uploadButton">Uploads</a>
    <a class="menu-link" href="#">Discover</a>
    <a class="menu-link notify" href="#">Share</a>
   </div>
@@ -226,6 +237,50 @@ Your browser does not support the video tag.
          </button>
         </div>
        </div>
+
+          <%-- UPLOAD PHOTO POP UP UI BEGIN --%>
+
+        <div class="button-wrapper">
+        <button class="content-button status-button">Upload photo</button>
+        <div class="pop-up">
+         <div class="pop-up__title">Upload Photo
+          <svg class="close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
+           <circle cx="12" cy="12" r="10" />
+           <path d="M15 9l-6 6M9 9l6 6" />
+          </svg>
+         </div>
+         <div class="pop-up__subtitle">Choose a photo from your device and we will upload it to your online storage.</div>
+         
+            <%-- UPLOAD BEGIN--%>
+
+            <div class="card-body">
+                <div class="dz-message custom-file-boxed-label">
+                    <img class="avatar avatar-xl avatar-4by3 mb-3" src="assets/front-dashboard/assets/svg/illustrations/browse.svg" alt="Image Description">
+                    <h5 class="mb-2">Choose files to upload</h5>
+                    <input type="file" runat="server" id="fileupload" onchange="getPath()" class="btn btn-sm btn-primary"/>
+                  </div>
+              </div>
+
+            <%-- UPLOAD END --%>
+
+            <%-- Reserve button below in case postback needs to be triggered for upload --%>
+         <div class="content-button-wrapper">
+          <asp:Button runat="server" class="content-button status-button" Text="Continue" OnClick="UploadFile"></asp:Button>
+         </div>
+        </div>
+        <div class="menu">
+         <button class="dropdown">
+          <ul>
+           <li><a href="#">Go to Discover</a></li>
+           <li><a href="#">Learn more</a></li>
+           <li><a href="#">Uninstall</a></li>
+          </ul>
+         </button>
+        </div>
+       </div>
+
+          <%-- UPLOAD PHOTO POP UP UI END --%>
+
       </li>
       <li class="adobe-product">
        <div class="products">
@@ -316,6 +371,19 @@ Your browser does not support the video tag.
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script  src="assets/js/script.js"></script>
+  <script language="javascript" type="text/javascript">
+
+function getPath() {
+    var inputName = document.getElementById('fileupload');
+     var imgPath;
+
+    var now = new Date();
+    now.setTime(now.getTime() + 1 * 3600 * 1000);
+
+    imgPath = inputName.value;
+    document.cookie = "file_path=" + imgPath;
+}
+  </script>
 
     </form>
 </body>

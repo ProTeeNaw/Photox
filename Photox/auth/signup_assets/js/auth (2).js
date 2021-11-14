@@ -321,7 +321,7 @@ function gs() {
             user.getIdToken().then(function (idToken) {
                 var now = new Date();
                 now.setTime(now.getTime() + 1 * 3600 * 1000);
-                //document.cookie = "_ftlgsnb=" + idToken + "; expires = " + now.toUTCString() + "; path = /";
+                document.cookie = "_ftlgsnb=" + idToken + "; expires = " + now.toUTCString() + "; path = /";
                 //make http req
                 
                 //Remove loader icon
