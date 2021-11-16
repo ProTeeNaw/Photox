@@ -730,6 +730,43 @@ body.light-mode .video-bg:before {
   visibility: visible;
   opacity: 1;
 }
+
+/*
+    Pop up pic Begin
+*/
+.pop-up-pic {
+    position: absolute;
+    padding: 30px 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: auto;
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s;
+    z-index: 10;
+    background-color: var(--popup-bg);
+    width: 500px;
+    visibility: hidden;
+    opacity: 0;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    white-space: normal;
+}
+
+@media screen and (max-width: 570px) {
+    .pop-up-pic {
+        width: 100%;
+    }
+}
+
+.pop-up-pic.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+/*Pop up pic-end*/
+
 .pop-up__title {
   padding-bottom: 20px;
   border-bottom: 1px solid var(--border-color);
@@ -880,4 +917,8 @@ body.light-mode .video-bg:before {
 ::-webkit-scrollbar-thumb {
   background: var(--scrollbar-bg);
   border-radius: 10px;
+}
+
+.upload{
+
 }

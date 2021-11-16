@@ -74,7 +74,7 @@ toggleButton.addEventListener('click', () => {
 
 //Account Action BEGIN --When user clicks their profile photo
 $(document).click(function (e) {
-    var container = $(".profile-img");
+    var container = $(".menu-link");
     var dd = $(".dropdown");
     if (!container.is(e.target) && container.has(e.target).length === 0) {
         dd.removeClass("is-active");
@@ -82,7 +82,7 @@ $(document).click(function (e) {
 });
 
 $(function () {
-    $(".profile-img:not(.open)").on("click", function (e) {
+    $(".menu-link:not(.open)").on("click", function (e) {
         $(".overlay-app").addClass("is-active");
     });
     $(".pop-up .close").click(function () {
@@ -90,18 +90,26 @@ $(function () {
     });
 });
 
-$(".profile-img:not(.open)").click(function () {
+$(".menu-link:not(.open)").click(function () {
     $(".pop-up").addClass("visible");
 });
 
 //Account Action END
+function upload_pop_up_close()
+{
+    var container = document.getElementById("note"); //Get container
 
-//Get path for upload
+    container.classList.remove("fadeIn");
+    container.classList.add("fadeOut");
+    container.style.display = "none";
+    container.style.visibility = "hidden";
+}
 
-function getPath() {
-    var inputName = document.getElementById('fileupload');
-    var imgPath;
+function upload_pop_up_open() {
+    var container = document.getElementById("note"); //Get container
 
-    imgPath = inputName.value;
-    alert(imgPath);
+    container.classList.remove("fadeOut");
+    container.classList.add("fadeIn");
+    container.style.display = "block";
+    container.style.visibility = "visible";
 }

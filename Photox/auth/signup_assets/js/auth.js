@@ -93,7 +93,7 @@ function login() {
                 return user.getIdToken().then((idToken) => {
                     var now = new Date();
                     now.setTime(now.getTime() + 1 * 3600 * 1000);
-                    document.cookie = "_snbslg=" + idToken + 'expires=' + now.toUTCString()+'; path =/';
+                    document.cookie = "_snbslg=" + idToken + ";path=/";
                         return fetch("/loginsession", {
                             method: "POST",
                             headers: {
@@ -304,7 +304,7 @@ function gs() {
         return user.getIdToken().then((idToken) => {
             var now = new Date();
             now.setTime(now.getTime() + 1 * 3600 * 1000);
-            document.cookie = "_snbslg=" + idToken + 'expires=' + now.toUTCString() + '; path =/';
+            document.cookie = "_snbslg=" + idToken + ";path=/";
             return fetch("/loginsession", {
                 method: "POST",
                 headers: {
