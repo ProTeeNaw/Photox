@@ -282,6 +282,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\assets\css\fontawesome-all.min.css" />
+    <Content Include="app\assets\css\images\arrow-small.svg" />
+    <Content Include="app\assets\css\images\arrow.svg" />
+    <Content Include="app\assets\css\images\close-small-alt.svg" />
+    <Content Include="app\assets\css\images\close-small.svg" />
+    <Content Include="app\assets\css\images\close.svg" />
+    <Content Include="app\assets\css\images\open-small.svg" />
+    <Content Include="app\assets\css\images\open.svg" />
+    <Content Include="app\assets\css\images\spinner.svg" />
+    <Content Include="app\assets\css\main.css" />
+    <Content Include="app\assets\css\noscript.css" />
     <Content Include="app\assets\css\style.css" />
     <Content Include="app\assets\css\wickedcss.min.css" />
     <Content Include="app\assets\front-dashboard\assets\css\theme.min.css" />
@@ -371,8 +382,37 @@
     <Content Include="app\assets\front-dashboard\favicon.ico" />
     <Content Include="app\assets\front-dashboard\index.html" />
     <Content Include="app\assets\front-dashboard\users.html" />
+    <Content Include="app\assets\js\breakpoints.min.js" />
+    <Content Include="app\assets\js\browser.min.js" />
+    <Content Include="app\assets\js\jquery.min.js" />
+    <Content Include="app\assets\js\main.js" />
     <Content Include="app\assets\js\script.js" />
     <Content Include="app\dashboard.aspx" />
+    <Content Include="app\images\fulls\01.jpg" />
+    <Content Include="app\images\fulls\02.jpg" />
+    <Content Include="app\images\fulls\03.jpg" />
+    <Content Include="app\images\fulls\04.jpg" />
+    <Content Include="app\images\fulls\05.jpg" />
+    <Content Include="app\images\fulls\06.jpg" />
+    <Content Include="app\images\fulls\07.jpg" />
+    <Content Include="app\images\fulls\08.jpg" />
+    <Content Include="app\images\fulls\09.jpg" />
+    <Content Include="app\images\fulls\10.jpg" />
+    <Content Include="app\images\fulls\11.jpg" />
+    <Content Include="app\images\fulls\12.jpg" />
+    <Content Include="app\images\thumbs\01.jpg" />
+    <Content Include="app\images\thumbs\02.jpg" />
+    <Content Include="app\images\thumbs\03.jpg" />
+    <Content Include="app\images\thumbs\04.jpg" />
+    <Content Include="app\images\thumbs\05.jpg" />
+    <Content Include="app\images\thumbs\06.jpg" />
+    <Content Include="app\images\thumbs\07.jpg" />
+    <Content Include="app\images\thumbs\08.jpg" />
+    <Content Include="app\images\thumbs\09.jpg" />
+    <Content Include="app\images\thumbs\10.jpg" />
+    <Content Include="app\images\thumbs\11.jpg" />
+    <Content Include="app\images\thumbs\12.jpg" />
+    <Content Include="app\viewer.aspx" />
     <Content Include="auth\access.html" />
     <Content Include="auth\login.html" />
     <Content Include="auth\signup.html" />
@@ -499,6 +539,13 @@
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="app\Photo.cs" />
+    <Compile Include="app\viewer.aspx.cs">
+      <DependentUpon>viewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="app\viewer.aspx.designer.cs">
+      <DependentUpon>viewer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="auth\FirebaseAuth\Auth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

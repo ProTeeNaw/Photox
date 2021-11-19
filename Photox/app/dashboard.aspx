@@ -26,7 +26,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="video-bg">
+        <div>
+<div class="video-bg">
  <video width="320" height="240" autoplay="autoplay" loop="loop" muted="muted">
   <source src="https://assets.codepen.io/3364143/7btrrd.mp4" type="video/mp4"/>
 Your browser does not support the video tag.
@@ -151,10 +152,10 @@ Your browser does not support the video tag.
             <asp:Panel runat="server" ID="AlbumListPanel">
             
         </asp:Panel>
-     
+
         <%-- CREATE ALBUM POP UP UI BEGIN --%>
 
-        <div class="button-wrapper">
+        <div class="button-wrapper" style="display: none; visibility: hidden">
         <div class="pop-up">
          <div class="pop-up__title">Upload Photo
           <svg class="close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
@@ -188,11 +189,10 @@ Your browser does not support the video tag.
 
           <%-- CREATE ALBUM POP UP UI END --%>
 
-
         <%-- UPLOAD PHOTO POP UP UI BEGIN --%>
 
         <%-- //////// --%>
-        <div id="note" style="display:none; visibility: hidden">
+        <div id="note">
         <div id="cookiesdirective" style="bottom: 0px;">
             <div style="position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: rgb(0, 0, 0); opacity: 0.8; z-index: 9999;">
 
@@ -238,8 +238,6 @@ Your browser does not support the video tag.
     </div>
         <%-- ///////// --%>
 
-        
-
           <%-- UPLOAD PHOTO POP UP UI END --%>
     </div>
     <div class="content-section">
@@ -250,23 +248,37 @@ Your browser does not support the video tag.
  </div>
  <div class="overlay-app"></div>
 </div>
+        </div>
+        
 <!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  
+        
+    </form>
+
+    
+
+    <%-- JS INJECTION --%>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script  src="assets/js/script.js"></script>
   <script language="javascript" type="text/javascript">
 
-function getPath() {
-    var inputName = document.getElementById('fileupload');
-     var imgPath;
+      function getPath() {
+          var inputName = document.getElementById('fileupload');
+          var imgPath;
 
-    var now = new Date();
-    now.setTime(now.getTime() + 1 * 3600 * 1000);
+          var now = new Date();
+          now.setTime(now.getTime() + 1 * 3600 * 1000);
 
-    imgPath = inputName.value;
-    document.cookie = "file_path=" + imgPath;
-}
+          imgPath = inputName.value;
+          document.cookie = "file_path=" + imgPath;
+      }
+
+      function open_viewer() {
+          
+          window.open("/app/viewer.aspx", '_blank');
+      }
   </script>
 
-    </form>
+    
 </body>
 </html>

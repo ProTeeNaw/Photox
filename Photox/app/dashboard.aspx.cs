@@ -5,6 +5,7 @@ using Photox.auth.FirebaseAuth;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI.HtmlControls;
@@ -23,6 +24,8 @@ namespace Photox.app
             CheckAuth();
 
             GetAlbums();
+
+            //OpenAlbum();
         }
         private async void CheckAuth()
         {
@@ -132,8 +135,8 @@ namespace Photox.app
 
                         // await the task to wait until upload completes and get the download url
                         var downloadUrl = await task;
-                        
-                        if(AlbumName.Text != "")
+
+                        if (AlbumName.Text != "")
                         {
                             PhotoDB(AlbumName.Text, downloadUrl);
                         }
@@ -191,42 +194,75 @@ namespace Photox.app
             CollectionReference usersRef = db.Collection(userRecord.Uid);
 
             QuerySnapshot allCitiesQuerySnapshot = await usersRef.GetSnapshotAsync();
+
+            foreach (DocumentSnapshot documentSnapshot in allCitiesQuerySnapshot.Documents)
+            {
+                HtmlGenericControl li = new HtmlGenericControl("li");
+
+                string AlbumToAdd = "<ul>" +
+                    "<li class='adobe-product'>" +
+
+                         "<div class='products'>" +
+                        "<asp:Image runat = 'server'/>" +
+                           $"{documentSnapshot.Id}" +
+                       "</div>" +
+                       "<div class='button-wrapper'>" +
+                        $"<button ID='{documentSnapshot.Id}' class='content-button status-button open' onclick='open_viewer()'>Open</button>" +
+                        "<div class='menu'>" +
+                         "<div class='dropdown'>" +
+                          "<ul>" +
+                           "<li onclick='upload_pop_up_open()'><a href='#'> Upload</a></li>" +
+                           "<li><a href = '#' > Delete </a></li>" +
+                          "</ul>" +
+                         "</div>" +
+                        "</div>" +
+                       "</div>" +
+                      "</li> " +
+                      "</ul>";
+
+                li.InnerHtml = AlbumToAdd;
+
+                AlbumListPanel.Controls.Add(li);
+            }
+        }
+
+        private async void OpenAlbum()
+        {
+            //Get user details by UID
+            var decodedToken = await FirebaseAuth.DefaultInstance.VerifySessionCookieAsync(Request.Cookies["session"].Value, true);
+
+            UserRecord userRecord = await FirebaseAuth.DefaultInstance.GetUserAsync(decodedToken.Uid);
+
+            FirestoreDb db = FirestoreDb.Create("photox-4e1e1");
+
+            CollectionReference usersRef = db.Collection(userRecord.Uid);
+
+            QuerySnapshot allCitiesQuerySnapshot = await usersRef.GetSnapshotAsync();
+
+            List<object> imageURLs = new List<object>();
+
             foreach (DocumentSnapshot documentSnapshot in allCitiesQuerySnapshot.Documents)
             {
                 Dictionary<string, object> city = documentSnapshot.ToDictionary();
 
                 foreach (KeyValuePair<string, object> pair in city)
                 {
-                    
-                    HtmlGenericControl li = new HtmlGenericControl("li");
-
-                    string AlbumToAdd = "<ul>" +
-                        "<li class='adobe-product'>" +
-
-                             "<div class='products'>" +
-                            "<asp:Image runat = 'server'/>" +
-                               $"{documentSnapshot.Id}" +
-                           "</div>" +
-                           "<div class='button-wrapper'>" +
-                            $"<asp:Button runat='server' ID='{documentSnapshot.Id}' class='content-button status-button open'></asp:Button>" +
-                            "<div class='menu'>" +
-                             "<div class='dropdown'>" +
-                              "<ul>" +
-                               $"<li onclick='upload_pop_up_open()'><a href='#'> Upload To {documentSnapshot.Id}</a></li>" +
-                               "<li><a href = '#' > Delete </a></li>" +
-                              "</ul>" +
-                             "</div>" +
-                            "</div>" +
-                           "</div>" +
-                          "</li> " +
-                          "</ul>";
-
-                    li.InnerHtml = AlbumToAdd;
-
-                    AlbumListPanel.Controls.Add(li);
+                    imageURLs = city.Values.ToList();
                 }
             }
-        }
+            //Response.Write($"<script>alert('{imageURLs[0].ToString()}')</script>");
+            //Response.Write($"<script>alert('{imageURLs[1].ToString()}')</script>");
 
-    }
+            //Set image tag sources from download URLs
+            //Image1.ImageUrl = imageURLs[0].ToString();
+            //Image2.ImageUrl = imageURLs[1].ToString();
+            //Image3.ImageUrl = imageURLs[2].ToString();
+            //Image4.ImageUrl = imageURLs[3].ToString();
+
+            ////Set sources for slides
+            //src1.HRef = imageURLs[0].ToString();
+            //src2.HRef = imageURLs[1].ToString();
+            //src3.HRef = imageURLs[2].ToString();
+            //src4.HRef = imageURLs[3].ToString();
+        }   }
 }
