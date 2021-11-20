@@ -15,22 +15,11 @@ namespace Photox.app
 {
     public partial class dashboard : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected async void Page_Load(object sender, EventArgs e)
         {
             Auth auth = new Auth();
 
             auth.InitializeApp();
-
-            CheckAuth();
-
-            GetAlbums();
-
-            //OpenAlbum();
-        }
-        private async void CheckAuth()
-        {
-            //var qq = await FirebaseAuth.DefaultInstance.VerifySessionCookieAsync(Request.Cookies["_snbslg"].Value, true);
-            //Console.WriteLine(qq);
 
             if (Request.Cookies["_snbslg"] != null)
             {
@@ -51,45 +40,35 @@ namespace Photox.app
                 };
 
                 Response.Cookies.Add(strname);
-                Response.Write($"<script>alert('Added + {strname}')</script>");
+            }
+            else
+            {
+                Response.Redirect("../auth/access.html", false);
+            }
 
-                try
+            GetAlbums();
+        }
+        private async void CheckAuth()
+        {
+            if (Request.Cookies["_snbslg"] != null)
+            {
+                //Create Session Cookie
+                // Set session expiration to 5 days.
+                var options = new SessionCookieOptions()
                 {
-                    var decodedToken = await FirebaseAuth.DefaultInstance.VerifySessionCookieAsync(Request.Cookies["_snbslg"].Value, true);
+                    ExpiresIn = TimeSpan.FromDays(5),
+                };
 
-                    UserRecord userRecord = await FirebaseAuth.DefaultInstance.GetUserAsync(decodedToken.Uid);
+                var sessionCookie = await FirebaseAuth.DefaultInstance.CreateSessionCookieAsync(Request.Cookies["_snbslg"].Value, options);
 
-                    if (userRecord.DisplayName != null)
-                    {
-                        if (userRecord.DisplayName.IndexOf(' ') >= 0)
-                        {
-                            //Username.Text = userRecord.DisplayName.Substring(0, userRecord.DisplayName.IndexOf(' '));
-                        }
-                        else
-                        {
-                            //Username.Text = userRecord.DisplayName;
-                        }
-                    }
-
-                    //EmailAdress.Text = userRecord.Email;
-
-
-                    if (userRecord.PhotoUrl != null)
-                    {
-                        //ProfileImage1.ImageUrl = userRecord.PhotoUrl;
-                    }
-                }
-                catch (FirebaseAuthException ex)
+                HttpCookie strname = new HttpCookie("session")
                 {
-                    if (ex.AuthErrorCode == AuthErrorCode.ExpiredIdToken)
-                    {
-                        Response.Write($"<script>alert('{ex.Message}')</script>");
-                    }
-                    else
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                }
+                    Value = sessionCookie,
+                    Expires = DateTime.Now.AddDays(10),
+                    Secure = true
+                };
+
+                Response.Cookies.Add(strname);
             }
             else
             {
@@ -181,7 +160,6 @@ namespace Photox.app
 
             await docRef.SetAsync(insert);
         }
-
         private async void GetAlbums()
         {
             //Get user details by UID
@@ -226,43 +204,5 @@ namespace Photox.app
             }
         }
 
-        private async void OpenAlbum()
-        {
-            //Get user details by UID
-            var decodedToken = await FirebaseAuth.DefaultInstance.VerifySessionCookieAsync(Request.Cookies["session"].Value, true);
-
-            UserRecord userRecord = await FirebaseAuth.DefaultInstance.GetUserAsync(decodedToken.Uid);
-
-            FirestoreDb db = FirestoreDb.Create("photox-4e1e1");
-
-            CollectionReference usersRef = db.Collection(userRecord.Uid);
-
-            QuerySnapshot allCitiesQuerySnapshot = await usersRef.GetSnapshotAsync();
-
-            List<object> imageURLs = new List<object>();
-
-            foreach (DocumentSnapshot documentSnapshot in allCitiesQuerySnapshot.Documents)
-            {
-                Dictionary<string, object> city = documentSnapshot.ToDictionary();
-
-                foreach (KeyValuePair<string, object> pair in city)
-                {
-                    imageURLs = city.Values.ToList();
-                }
-            }
-            //Response.Write($"<script>alert('{imageURLs[0].ToString()}')</script>");
-            //Response.Write($"<script>alert('{imageURLs[1].ToString()}')</script>");
-
-            //Set image tag sources from download URLs
-            //Image1.ImageUrl = imageURLs[0].ToString();
-            //Image2.ImageUrl = imageURLs[1].ToString();
-            //Image3.ImageUrl = imageURLs[2].ToString();
-            //Image4.ImageUrl = imageURLs[3].ToString();
-
-            ////Set sources for slides
-            //src1.HRef = imageURLs[0].ToString();
-            //src2.HRef = imageURLs[1].ToString();
-            //src3.HRef = imageURLs[2].ToString();
-            //src4.HRef = imageURLs[3].ToString();
-        }   }
+    }
 }

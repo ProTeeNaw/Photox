@@ -14,41 +14,50 @@
 
     <div id="viewer">
         <div id="main">
-
 				<!-- Header -->
 					<header id="header">
-						<h1>Lens</h1>
-						<p>Just another fine responsive site template by <a href="http://html5up.net">HTML5 UP</a></p>
+						<h1 runat="server" id="Header">Album Name</h1>
+						<p>Select an option below to work with your album</p>
 						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-							<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+							<li>
+								<asp:Button runat="server" Text="Share" OnClick="FillDropDown">
+								</asp:Button>
+
+							</li>
+							<li>
+								<asp:Button runat="server" Text="Edit" OnClick="Test">
+								</asp:Button>
+							</li>
+							<li>
+								<asp:Button runat="server" Text="Search" OnClick="Test">
+								</asp:Button>
+							</li>
+							<li>
+								<asp:Button runat="server" Text="Delete" OnClick="Delete">
+								</asp:Button>
+							</li>
 						</ul>
 					</header>
 				<!-- Thumbnail -->
 					<section id="thumbnails">
 						<article>
-							<a class="thumbnail" runat="server" id="src1" href="images/fulls/01.jpg" data-position="left center">
+							<a class="thumbnail" runat="server" id="src1" href="images/fulls/01.jpg" data-position="left center" onclick="pic1()">
                                 
                                 <asp:Image runat="server" ID="Image1" ImageUrl="images/thumbs/01.jpg" />
 							</a>
-							
 						</article>
 						<article>
-							<a class="thumbnail" runat="server" id="src2" href="images/fulls/02.jpg">
+							<a class="thumbnail" runat="server" id="src2" href="images/fulls/02.jpg" onclick="pic2()">
                                 <asp:Image runat="server" ID="Image2" ImageUrl="images/thumbs/02.jpg" />
-
 							</a>
-							
 						</article>
 						<article>
-							<a class="thumbnail" runat="server" id="src3" href="images/fulls/03.jpg" data-position="top center">
+							<a class="thumbnail" runat="server" id="src3" href="images/fulls/03.jpg" data-position="top center" onclick="pic3()">
                                 <asp:Image runat="server" ID="Image3" ImageUrl="images/thumbs/03.jpg" />
 							</a>
 						</article>
 						<article>
-							<a class="thumbnail" runat="server" id="src4" href="images/fulls/04.jpg">
+							<a class="thumbnail" runat="server" id="src4" href="images/fulls/04.jpg" onclick="pic4()">
                                 <asp:Image runat="server" ID="Image4" ImageUrl="images/thumbs/04.jpg" />
 							</a>
 						</article>
@@ -57,6 +66,23 @@
     </div>
 
     <%-- View Photos Form END --%>
+
+		<div id="note" runat="server">
+        <div id="cookiesdirective" style="bottom: 0px;">
+            <div style="position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: rgb(0, 0, 0); opacity: 0.8; z-index: 9999;">
+
+            </div>
+            <div style="position: fixed; top: 0; right: 0; bottom: 0; left: 0; display: flex; align-items: center; z-index: 10000">
+                <div class="cookie-wrapper" style="position: relative; width: 100%; max-width: 500px; margin-right: auto; margin-left: auto; padding: 1rem; text-align: center; border-radius: .3rem; box-shadow: 0 10px 40px 0 rgba(0,0,0,0.2); color:#424a4d; background:rgba(234, 239, 241, 0.99);">
+					<asp:DropDownList ID="AllUserNames" runat="server" style="margin-bottom: 38px"></asp:DropDownList>
+                    <div class="mbr-section-btn">
+                        <asp:Button style="margin:0;" runat="server" class="btn btn-sm btn-primary display-7" id="ok" Text="Share" onclick="Share">
+                        </asp:Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </form>
 	<%-- JS INJECTION FOR PHOTOT VIEW --%>
 
