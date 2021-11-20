@@ -118,8 +118,6 @@ namespace Photox.app
                         imageURLs = city.Values.ToList();
                     }
                 }
-                //Response.Write($"<script>alert('{imageURLs[0].ToString()}')</script>");
-                //Response.Write($"<script>alert('{imageURLs[1].ToString()}')</script>");
 
                 try
                 {
@@ -182,7 +180,7 @@ namespace Photox.app
 
                 Dictionary<string, string> insert = new Dictionary<string, string>
                 {
-                    { "ShareTest", "" }
+                    { "SharedURL", Request.Cookies["pic"].Value }
                 };
 
                 await docRef.SetAsync(insert);
@@ -210,6 +208,10 @@ namespace Photox.app
         protected void Test(object sender, EventArgs e)
         {
             Response.Write("<script>alert('Works')</script>");
+        }
+        protected void Pic1(object sender, EventArgs e)
+        {
+            Response.Write("<script>alert('Pic')</script>");
         }
     }
 }

@@ -412,6 +412,7 @@
     <Content Include="app\images\thumbs\10.jpg" />
     <Content Include="app\images\thumbs\11.jpg" />
     <Content Include="app\images\thumbs\12.jpg" />
+    <Content Include="app\shared.aspx" />
     <Content Include="app\viewer.aspx" />
     <Content Include="auth\access.html" />
     <Content Include="auth\login.html" />
@@ -539,6 +540,13 @@
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="app\Photo.cs" />
+    <Compile Include="app\shared.aspx.cs">
+      <DependentUpon>shared.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="app\shared.aspx.designer.cs">
+      <DependentUpon>shared.aspx</DependentUpon>
+    </Compile>
     <Compile Include="app\viewer.aspx.cs">
       <DependentUpon>viewer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

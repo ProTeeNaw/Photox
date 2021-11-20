@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Async="true" CodeBehind="viewer.aspx.cs" Inherits="Photox.app.viewer" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="shared.aspx.cs" Inherits="Photox.app.shared" %>
+
 
 <!DOCTYPE html>
 
