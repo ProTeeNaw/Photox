@@ -41,10 +41,10 @@ Your browser does not support the video tag.
  <div class="header">
   <div class="menu-circle"></div>
   <div class="header-menu">
-   <%--<a class="menu-link is-active" href="#">Albums</a>--%>
+   <a class="menu-link is-active" href="#">Albums</a>
    <a class="menu-link notify" href="#" id="uploadButton">Create</a>
-<%--   <a class="menu-link" href="#">Discover</a>
-   <a class="menu-link notify" href="#">Share</a>--%>
+   <a class="menu-link" href="#">Discover</a>
+   <a class="menu-link notify" href="#">Share</a>
   </div>
   <div class="search-bar">
    <input type="text" placeholder="Search"/>
@@ -150,7 +150,53 @@ Your browser does not support the video tag.
          <asp:Label runat="server" Text="My Albums"></asp:Label>
      </div>
             <asp:Panel runat="server" ID="AlbumListPanel">
-            
+            <div class="apps-card">
+      <div class="app-card">
+       <asp:Image runat="server" ID="Image1" ImageUrl="https://asia.olympus-imaging.com/content/000090033.jpg" />
+       <div class="app-card-buttons">
+        <a class="content-button status-button" onclick="upload_pop_up_open()">Add</a>
+        <div class="menu">
+         <button class="dropdown">
+          <ul>
+           <li><a href="#" onclick="show_edit()">Edit</a></li>
+           <li><a href="#" onclick="share()">Share</a></li>
+          </ul>
+         </button>
+        </div>
+       </div>
+      </div>
+      <div class="app-card">
+       <asp:Image runat="server" ID="Image2" ImageUrl="data:image/jpeg;base64,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" />
+       <div class="app-card-buttons">
+        <a class="content-button status-button" onclick="upload_pop_up_open()">Add</a>
+        <div class="menu">
+         <button class="dropdown">
+          <ul>
+           <li><a href="#">Edit</a></li>
+           <li><a href="#">Share</a></li>
+          </ul>
+         </button>
+        </div>
+       </div>
+      </div>
+      <div class="app-card">
+       <asp:Image runat="server" ID="Image3" ImageUrl="https://asia.olympus-imaging.com/content/000090033.jpg" />
+       <div class="app-card-buttons">
+        <button class="content-button status-button" onclick="upload_pop_up_open()">Add</button>
+        <div class="menu">
+         <button class="dropdown">
+          <ul>
+           <li><a href="#">Edit</a></li>
+           <li><a href="#">Share</a></li>
+              <li><a href="#">Delete</a></li>
+          </ul>
+         </button>
+        </div>
+       </div>
+      </div>
+
+                
+     </div>
         </asp:Panel>
 
         <%-- CREATE ALBUM POP UP UI BEGIN --%>
@@ -192,7 +238,7 @@ Your browser does not support the video tag.
         <%-- UPLOAD PHOTO POP UP UI BEGIN --%>
 
         <%-- //////// --%>
-        <div id="note">
+        <div id="note" style="display: none; visibility: hidden">
         <div id="cookiesdirective" style="bottom: 0px;">
             <div style="position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: rgb(0, 0, 0); opacity: 0.8; z-index: 9999;">
 
@@ -239,6 +285,54 @@ Your browser does not support the video tag.
         <%-- ///////// --%>
 
           <%-- UPLOAD PHOTO POP UP UI END --%>
+
+        <%-- Meta data edit begin --%>
+
+        <div id="meta" style="display: none; visibility: hidden">
+        <div id="cookiesdirective" style="bottom: 0px;">
+            <div style="position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: rgb(0, 0, 0); opacity: 0.8; z-index: 9999;">
+
+            </div>
+            <div style="position: fixed; top: 0; right: 0; bottom: 0; left: 0; display: flex; align-items: center; z-index: 10000">
+                <div class="cookie-wrapper" style="position: relative; width: 100%; max-width: 350px; margin-right: auto; margin-left: auto; padding: 1rem; text-align: center; border-radius: .3rem; box-shadow: 0 10px 40px 0 rgba(0,0,0,0.2); color:#424a4d; background:rgba(234, 239, 241, 0.99);">
+                    
+                    <div class="button-wrapper" style="max-width:auto">
+        <div class="">
+         <div class="pop-up__title">Meta data
+             <div onclick="upload_pop_up_close()">
+                <svg class="close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
+                           <circle cx="12" cy="12" r="10" />
+                           <path d="M15 9l-6 6M9 9l6 6" />
+                          </svg>
+             </div>
+          
+         </div>
+         <div class="pop-up__subtitle">Edit file metadata.</div>
+         
+            <%-- UPLOAD BEGIN--%>
+
+            <div class="card-body">
+                <div class="dz-message custom-file-boxed-label">
+                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+                  </div>
+              </div>
+            <%-- UPLOAD END --%>
+
+            <%-- Reserve button below in case postback needs to be triggered for upload --%>
+         <div class="content-button-wrapper">
+          <asp:Button runat="server" class="content-button status-button" Text="Update" OnClick="Update"></asp:Button>
+         </div>
+        </div>
+       </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <%-- Meta data edit end --%>
     </div>
     <div class="content-section">
         <%-- Put panel here and view images --%>
@@ -246,7 +340,6 @@ Your browser does not support the video tag.
    </div>
   </div>
  </div>
- <div class="overlay-app"></div>
 </div>
         </div>
         
@@ -262,15 +355,10 @@ Your browser does not support the video tag.
   <script  src="assets/js/script.js"></script>
   <script language="javascript" type="text/javascript">
 
-      function getPath() {
-          var inputName = document.getElementById('fileupload');
-          var imgPath;
-
-          var now = new Date();
-          now.setTime(now.getTime() + 1 * 3600 * 1000);
-
-          imgPath = inputName.value;
-          document.cookie = "file_path=" + imgPath;
+      function show_edit() {
+          var edit = document.getElementById("meta");
+          edit.style.display = "block";
+          edit.style.visibility = "visible";
       }
 
       function open_viewer() {
@@ -279,6 +367,5 @@ Your browser does not support the video tag.
       }
   </script>
 
-    
 </body>
 </html>

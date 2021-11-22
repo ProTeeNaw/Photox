@@ -103,6 +103,8 @@ function upload_pop_up_close()
     container.classList.add("fadeOut");
     container.style.display = "none";
     container.style.visibility = "hidden";
+
+    
 }
 
 function upload_pop_up_open() {

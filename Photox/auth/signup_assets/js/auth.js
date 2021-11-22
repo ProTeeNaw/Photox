@@ -111,7 +111,7 @@ function login() {
                     ic.classList.remove("fa-spin");
             })
             .then(() => {
-                window.location = "http://localhost:8080";
+                window.location = "../app/dashboard.aspx";
             })
             .catch((error) => {
                 mess.textContent = error;
@@ -280,7 +280,7 @@ function fb() {
     })
         .then(() => {
             //Redirect user to requested location
-            window.location = "http://localhost:8080";
+            window.location = "/dashboard.aspx";
         })
         .catch((error) => {
             mess.textContent = error;

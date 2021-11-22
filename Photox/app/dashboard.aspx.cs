@@ -1,9 +1,9 @@
 ﻿using Firebase.Storage;
 using FirebaseAdmin.Auth;
-using Google.Cloud.Firestore;
 using Photox.auth.FirebaseAuth;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,194 +15,143 @@ namespace Photox.app
 {
     public partial class dashboard : System.Web.UI.Page
     {
+        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Data.mdf;Integrated Security=True; MultipleActiveResultSets=true");
+        SqlCommand command;
         protected async void Page_Load(object sender, EventArgs e)
         {
             Auth auth = new Auth();
 
             auth.InitializeApp();
 
-            if (Request.Cookies["_snbslg"] != null)
+            try
             {
-                //Create Session Cookie
-                // Set session expiration to 5 days.
-                var options = new SessionCookieOptions()
+
+                if (Request.Cookies["_snbslg"] != null)
                 {
-                    ExpiresIn = TimeSpan.FromDays(5),
-                };
-
-                var sessionCookie = await FirebaseAuth.DefaultInstance.CreateSessionCookieAsync(Request.Cookies["_snbslg"].Value, options);
-
-                HttpCookie strname = new HttpCookie("session")
-                {
-                    Value = sessionCookie,
-                    Expires = DateTime.Now.AddDays(10),
-                    Secure = true
-                };
-
-                Response.Cookies.Add(strname);
-            }
-            else
-            {
-                Response.Redirect("../auth/access.html", false);
-            }
-
-            GetAlbums();
-        }
-        private async void CheckAuth()
-        {
-            if (Request.Cookies["_snbslg"] != null)
-            {
-                //Create Session Cookie
-                // Set session expiration to 5 days.
-                var options = new SessionCookieOptions()
-                {
-                    ExpiresIn = TimeSpan.FromDays(5),
-                };
-
-                var sessionCookie = await FirebaseAuth.DefaultInstance.CreateSessionCookieAsync(Request.Cookies["_snbslg"].Value, options);
-
-                HttpCookie strname = new HttpCookie("session")
-                {
-                    Value = sessionCookie,
-                    Expires = DateTime.Now.AddDays(10),
-                    Secure = true
-                };
-
-                Response.Cookies.Add(strname);
-            }
-            else
-            {
-                Response.Redirect("../auth/access.html", false);
-            }
-        }
-        protected async void UploadFile(object sender, EventArgs e)
-        {
-            if (Request.Cookies["_snbslg"] != null)
-            {
-                string filePath;
-
-                if (ChooseImage.PostedFile != null)
-                {
-                    string fileName = Path.GetFileName(ChooseImage.PostedFile.FileName); // file name with path.
-                    ChooseImage.SaveAs(Server.MapPath(@"~/temp/" + fileName));
-                    string filepath;
-                    filePath = Server.MapPath(@"~/temp/" + fileName);
-
-                    try
+                    //Create Session Cookie
+                    // Set session expiration to 5 days.
+                    var options = new SessionCookieOptions()
                     {
-                        var decodedToken = await FirebaseAuth.DefaultInstance.VerifySessionCookieAsync(Request.Cookies["session"].Value, true);
+                        ExpiresIn = TimeSpan.FromDays(5),
+                    };
 
-                        // Get any Stream - it can be FileStream, MemoryStream or any other type of Stream
-                        var stream = File.Open(filePath, FileMode.Open);
+                    var sessionCookie = await FirebaseAuth.DefaultInstance.CreateSessionCookieAsync(Request.Cookies["_snbslg"].Value, options);
 
-                        //authentication
-                        // Constructr FirebaseStorage, path to where you want to upload the file and Put it there
-                        var task = new FirebaseStorage(
-                            "photox-4e1e1.appspot.com",
-
-                             new FirebaseStorageOptions
-                             {
-                                 //AuthTokenAsyncFactory = () => Task.FromResult(Request.Cookies["session"].Value),
-                                 ThrowOnCancel = true,
-                             })
-
-                            .Child($"{decodedToken.Uid}/images/" + fileName)
-                            .PutAsync(stream);
-
-                        // Track progress of the upload
-                        //task.Progress.ProgressChanged += (s, e) => Console.WriteLine($"Progress: {e.Percentage} %");
-
-                        // await the task to wait until upload completes and get the download url
-                        var downloadUrl = await task;
-
-                        if (AlbumName.Text != "")
-                        {
-                            PhotoDB(AlbumName.Text, downloadUrl);
-                        }
-                        else
-                        {
-                            //To upload photos to an existing album
-                            //PhotoDB("Testing Album Name", downloadUrl);
-                        }
-
-                        Console.WriteLine(downloadUrl);
-                    }
-                    catch (FirebaseAuthException ex)
+                    HttpCookie strname = new HttpCookie("session")
                     {
-                        Response.Write($"<script>alert('{ex.Message}')</script>");
-                    }
+                        Value = sessionCookie,
+                        Expires = DateTime.Now.AddDays(10),
+                        Secure = true
+                    };
+
+                    Response.Cookies.Add(strname);
                 }
                 else
                 {
-                    //Choose an image
+                    Response.Redirect("../auth/access.html", false);
                 }
+            }
+            catch(FirebaseAuthException ex)
+            {
+                Console.Write(ex.Message);
+                if(ex.AuthErrorCode == AuthErrorCode.InvalidIdToken)
+                {
+                    Response.Redirect("../auth/access.html", false);
+                }
+            }
+
+            connect.Open();
+            LoadImages();
+            connect.Close();
+        }
+        protected async void UploadFile(object sender, EventArgs e)
+        {
+            connect.Open();
+            if (Request.Cookies["_snbslg"] != null)
+            {
+
+                var decodedToken = await FirebaseAuth.DefaultInstance.VerifySessionCookieAsync(Request.Cookies["session"].Value, true);
+
+                ChooseImage.SaveAs(Request.PhysicalApplicationPath + "temp/" + ChooseImage.FileName);
+
+                var stream = File.Open(Server.MapPath(ChooseImage.FileName), FileMode.Open);
+
+                //authentication
+                // Constructr FirebaseStorage, path to where you want to upload the file and Put it there
+                var task = new FirebaseStorage(
+                    "photox-4e1e1.appspot.com",
+
+                     new FirebaseStorageOptions
+                     {
+                             //AuthTokenAsyncFactory = () => Task.FromResult(Request.Cookies["session"].Value),
+                             ThrowOnCancel = true,
+                     })
+
+                    .Child($"{decodedToken.Uid}/" + ChooseImage.FileName)
+                    .PutAsync(stream);
+
+                // Track progress of the upload
+                //task.Progress.ProgressChanged += (s, e) => Console.WriteLine($"Progress: {e.Percentage} %");
+
+                // await the task to wait until upload completes and get the download url
+                
+                var downloadUrl = await task;
+
+                command = new SqlCommand($"INSERT INTO ImageTable VALUES('{downloadUrl}', 'tino', 'tino', 'tino', 'tino', 'tino', 'tino', 'tinomunhenga@gmail.com')", connect);
+
+                command.ExecuteNonQuery();
+
+                connect.Close();
+
+                Response.Write($"<script>alert('Image Inserted Successfully: {downloadUrl}')</script>");
             }
             else
             {
                 Response.Redirect("../auth/access.html", false);
             }
         }
-        private async void PhotoDB(string AlbumName, string DownloadURL)
+
+        protected void Update(object sender, EventArgs e)
         {
-            //Get user details by UID
-            var decodedToken = await FirebaseAuth.DefaultInstance.VerifySessionCookieAsync(Request.Cookies["session"].Value, true);
 
-            UserRecord userRecord = await FirebaseAuth.DefaultInstance.GetUserAsync(decodedToken.Uid);
-
-            ////Get or create database
-            FirestoreDb db = FirestoreDb.Create("photox-4e1e1"); //A unique collection that has user specific data
-
-            DocumentReference docRef = db.Collection(userRecord.Uid).Document(AlbumName);
-            Dictionary<string, string> insert = new Dictionary<string, string>
-                {
-                    { DownloadURL, "" }
-                };
-
-            await docRef.SetAsync(insert);
         }
-        private async void GetAlbums()
+
+        protected void LoadImages()
         {
-            //Get user details by UID
-            var decodedToken = await FirebaseAuth.DefaultInstance.VerifySessionCookieAsync(Request.Cookies["session"].Value, true);
-
-            UserRecord userRecord = await FirebaseAuth.DefaultInstance.GetUserAsync(decodedToken.Uid);
-
-            FirestoreDb db = FirestoreDb.Create("photox-4e1e1");
-
-            CollectionReference usersRef = db.Collection(userRecord.Uid);
-
-            QuerySnapshot allCitiesQuerySnapshot = await usersRef.GetSnapshotAsync();
-
-            foreach (DocumentSnapshot documentSnapshot in allCitiesQuerySnapshot.Documents)
+            if (Request.Cookies["_snbslg"] != null)
             {
-                HtmlGenericControl li = new HtmlGenericControl("li");
+               command = new SqlCommand($"SELECT Image FROM ImageTable WHERE Id=6", connect);
 
-                string AlbumToAdd = "<ul>" +
-                    "<li class='adobe-product'>" +
+               Image1.ImageUrl = command.ExecuteScalar().ToString();
 
-                         "<div class='products'>" +
-                        "<asp:Image runat = 'server'/>" +
-                           $"{documentSnapshot.Id}" +
-                       "</div>" +
-                       "<div class='button-wrapper'>" +
-                        $"<button ID='{documentSnapshot.Id}' class='content-button status-button open' onclick='open_viewer()'>Open</button>" +
-                        "<div class='menu'>" +
-                         "<div class='dropdown'>" +
-                          "<ul>" +
-                           "<li onclick='upload_pop_up_open()'><a href='#'> Upload</a></li>" +
-                           "<li><a href = '#' > Delete </a></li>" +
-                          "</ul>" +
-                         "</div>" +
-                        "</div>" +
-                       "</div>" +
-                      "</li> " +
-                      "</ul>";
+               command = new SqlCommand($"SELECT Image FROM ImageTable WHERE Id=7", connect);
+               Image1.ImageUrl = command.ExecuteScalar().ToString();
 
-                li.InnerHtml = AlbumToAdd;
-
-                AlbumListPanel.Controls.Add(li);
+            }
+            else
+            {
+                Response.Redirect("../auth/access.html", false);
             }
         }
+
+        protected string FileName()
+        {
+            SqlCommand comm = new SqlCommand($"SELECT FileName FROM ImageTable", connect);
+
+            SqlDataReader read = comm.ExecuteReader();
+
+            string name = "";
+
+            while (read.Read())
+            {
+                name = read[0].ToString();
+            }
+
+            read.Close();
+
+            return name;
+        }
+        
 
     }
 }
